@@ -1,33 +1,28 @@
 (function($) {
     $(document).ready(function() {
-        registerWindowScroll();
         loadMenu();
     })
 })(jQuery);
 
-function registerWindowScroll() {
+function onScroll() {
+    /* Handle header on scroll - Start */
     const header = document.querySelector('#header')
     const content = document.querySelector('#content')
     const footer = document.querySelector('#footer')
     const headerHeight = header.offsetHeight;
 
-    // Set #content min height
-    content.style.minHeight = (window.innerHeight - footer.offsetHeight) + "px";
+    const totalHeight = header.offsetHeight + content.offsetHeight + footer.offsetHeight;
 
-    function handleScroll() {
-        window.removeEventListener("scroll", handleScroll, true);
-        if (window.scrollY > headerHeight) {
-            header.classList.add('header--onscroll');
-            content.classList.add('content--onscroll');
-        } else {
-            header.classList.remove('header--onscroll');
-            content.classList.remove('content--onscroll');
-        }
+    if (window.innerHeight < totalHeight && window.scrollY > headerHeight) {
+        header.classList.add('header--onscroll');
+        content.classList.add('content--onscroll');
+    } else {
+        header.classList.remove('header--onscroll');
+        content.classList.remove('content--onscroll');
     }
-    window.addEventListener('scroll', handleScroll);
-}
-
-function onScroll() {
+    /* Handle header on scroll - End */
+    
+    /* Handle floating button on scroll - Start */
     const floatButton = document.getElementById('float_button');
 
     // Adjust float button bottom position
@@ -36,4 +31,5 @@ function onScroll() {
     } else {
         floatButton.style.bottom = null;
     }
+    /* Handle floating button on scroll - End */
 }

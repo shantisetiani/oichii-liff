@@ -351,8 +351,10 @@ function adjustTotalQuantity() {
         }
         
         localStorage.setItem('total_quantity', quantity);
-        var btnGotoOrderText = "Order List [<strong>"+ quantity + "</strong> item(s)]"
-        $('#btn_goto_order').html(btnGotoOrderText);
+        if(quantity > 0) {
+            var btnGotoOrderText = "Order List [<strong>"+ quantity + "</strong> item(s)]"
+            $('#btn_goto_order').html(btnGotoOrderText);
+        }
     } catch (error) {
         showErrorAlert("Error while adjust total quantity");
     }
@@ -403,7 +405,6 @@ function handleQuantityOnKeypress() {
 }
 
 async function goToPage(page) {
-    registerWindowScroll();
     if (page == "order") {
         const profile = await getProfile();
         const name = profile !== null ? profile.displayName : "";
