@@ -73,6 +73,11 @@ h2 { font-size: 48px; }
     bottom: 50px;
     z-index: 99;
 }
+.onscroll-only { display: none; }
+.header--onscroll .onscroll-only,
+.content--onscroll .onscroll-only { display: block; }
+.header--onscroll .onscroll-hide,
+.content--onscroll .onscroll-hide { display: none; }
 
 /* Header */
 .header .space { display: none; }
@@ -117,7 +122,6 @@ ul.navbar-nav {
     align-items: center;
 }
 .nav-profile-section { display: none; }
-.header--onscroll .onscroll-hide { display: none; }
 .header--onscroll .nav-profile-section {
     display: block;
     position: absolute;

@@ -18,10 +18,10 @@ function registerWindowScroll() {
         window.removeEventListener("scroll", handleScroll, true);
         if (window.scrollY > headerHeight) {
             header.classList.add('header--onscroll');
-            content.style.marginTop = (headerHeight + 20) + "px";
+            content.classList.add('content--onscroll');
         } else {
             header.classList.remove('header--onscroll');
-            content.style.marginTop = null;
+            content.classList.remove('content--onscroll');
         }
     }
     window.addEventListener('scroll', handleScroll);

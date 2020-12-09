@@ -339,12 +339,16 @@ function openModal(modalName, id="") {
 
 function adjustTotalQuantity() {
     try {
-        var orderList = JSON.parse(localStorage.getItem('order_list'));
+        var orderList = [];
         var quantity = 0;
+
+        if(localStorage.order_list) {
+            orderList = JSON.parse(localStorage.getItem('order_list'));
  
-        orderList.forEach((item) => {
-            quantity += item.quantity;
-        });
+            orderList.forEach((item) => {
+                quantity += item.quantity;
+            });
+        }
         
         localStorage.setItem('total_quantity', quantity);
         var btnGotoOrderText = "Order List [<strong>"+ quantity + "</strong> item(s)]"
