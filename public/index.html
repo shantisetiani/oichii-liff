@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+    
+<head>
+    <title>OICHII | Contactless Dining</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/sushi.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="behavior.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+ 
+<body onscroll="onScroll();">
+    <div class="container">
+        <div class="row header" id="header">
+            <div>
+                <h1 class="text-center">
+                    <span class="fs-24">Welcome to</span>
+                    <span class="space">&nbsp;</span>
+                    <span class="dis-block"><strong>OICHII</strong>&nbsp;!</span>
+                    <div class="spacer-50 dis-sm-hide onscroll-hide"></div>
+                    <div class="spacer-20 dis-hide dis-sm-block onscroll-hide"></div>
+                </h1>
+            </div>
+            <div>
+                <button id="btn_login" class="btn btn-success btn-small btn-login">Log in</button>
+                <!-- PROFILE INFO -->
+                <div id="profile_info" class="hidden">
+                    <div class="col-xs-4 col-xs-offset-4 col-sm-4 col-sm-offset-0 col-md-3 col-lg-2">
+                        <div id="profile_picture"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+                        <table>
+                            <tr>
+                                <th>User Id</th>
+                                <td id="user_id"></td>
+                            </tr>
+                            <tr>
+                                <th>Display Name</th>
+                                <td id="display_name"></td>
+                            </tr>
+                            <tr>
+                                <th>Status Message</th>
+                                <td id="status_message"></td>
+                            </tr>
+                        </table>
+                        <button id="btn_logout" class="btn btn-danger btn-small">Log out</button>
+                    </div>
+                </div>
+                <div id="profile_info_onscroll" class="nav-profile-section hidden">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="profile-picture"><div id="profile_picture_onscroll"></div></li>
+                        <li class="dropdown">
+                            <a href="#" id="display_name_onscroll" class="dropdown-toggle" data-toggle="dropdown">Shanti</a>
+                            <ul class="dropdown-menu">
+                                <div class="fs-10"><strong>User ID</strong></div>
+                                <div class="fs-12" id="user_id_onscroll"></div>
+                                <div class="spacer-10"></div>
+                                <div class="fs-10"><strong>Status Message</strong></div>
+                                <div class="fs-12" id="status_message_onscroll"></div>
+                                <li role="separator" class="divider"></li>
+                                <button id="btn_logout_onscroll" class="btn btn-danger btn-small">Log out</button>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div id="content">
+            <!-- Alert -->
+            <div class="alert alert-success dis-hide" role="alert" id="success_alert"></div>
+            <div class="alert alert-danger dis-hide" role="alert" id="failed_alert"></div>
+
+            <!-- Menu Section -->
+            <section id="menu_section">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="text-center">Menu</h2>
+                        <div class="spacer-50"></div>
+                    </div>
+                </div>
+                <div class="row review-section">
+                    <div class="col-xs-12">
+                        Already tasted our food? Review us on <a href="#" id="btn_review">Zomato</a> !
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="nav nav-pills">
+                        <li><a id="nav-list-catatan" href="javascript:void(0);" onclick="changeMenuCategory('food');">Food</a></li>
+                        <li><a id="nav-tambah-catatan" href="javascript:void(0);" onclick="changeMenuCategory('drinks');">Drinks</a></li>
+                    </ul>
+                </div>
+                <div class="row well" id="food"></div>
+
+                <div class="row well dis-hide" id="drinks"></div>
+            </section>
+
+            <!-- Button to go to Order List -->
+            <div class="float-button" id="float_button">
+                <button id="btn_goto_order" class="btn btn-info btn-small" onclick="goToPage('order');">Order List</button>
+                <!-- <button id="btn_goto_menu" class="btn btn-info btn-small dis-hide" onclick="goToPage('menu');">See Menu</button> -->
+            </div>
+
+            <!-- Order Section -->
+            <section id="order_section" class="dis-hide">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="text-center">Order</h2>
+                        <div class="spacer-50"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div><strong>Name</strong></div>
+                    </div>
+                    <div class="col-xs-8">
+                        <input type="text" id="input_name" placeholder="Full Name" />
+                    </div>
+                </div>
+                <div class="spacer-20"></div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div><strong>Table No.</strong></div>
+                    </div>
+                    <div class="col-xs-8">
+                        <button id="btn_scan_no" class="btn btn-default btn-small">Scan QR</button>
+                        <div class="hidden" id="scan_qr_result"><input type="text" id="input_table_no" placeholder="Your table number" /><span id="scan_error_text"></span></div>
+                    </div>
+                </div>
+                <div class="spacer-20"></div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <div><strong>Order List</strong></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8" id="order_list"></div>
+                </div>
+                <div class="spacer-50"></div>
+                <div class="row text-center">
+                    <div class="col-xs-12">
+                        <button id="btn_order" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confirm_modal" onclick="openModal('order');">Order</button>
+                        <button id="btn_cancel" class="btn btn-secondary btn-lg" onclick="goToPage('menu');">Back to Menu</button>
+                    </div>
+                </div>
+                <div class="spacer-50"></div>
+
+                <!-- Modal -->
+                <div id="confirm_modal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-capital fs-36 fs-sm-28"><strong><span id="modal_title"></span></strong></h4>
+                        </div>
+                        <div class="modal-body" id="modal_content"></div>
+                        <div class="modal-footer" id="modal_footer"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- LIFF INIT ERROR -->
+    <div id="liffInitErrorMessage" class="hidden">
+        <p>Something went wrong with LIFF initialization.</p>
+        <p>LIFF initialization can fail if a user clicks "Cancel" on the "Grant permission" screen, or if an error occurs in the process of <code>liff.init()</code>.
+    </div>
+    <!-- NODE.JS LIFF ID ERROR -->
+    <div id="nodeLiffIdErrorMessage" class="hidden">
+        <p>Unable to receive the LIFF ID as an environment variable.</p>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer" class="footer text-center">
+        <h5>© Copyright <strong>Shanti Setiani 2020</strong></h5>
+    </div>
+</body>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script src="liff-starter.js"></script>
+<script src="function.js"></script>

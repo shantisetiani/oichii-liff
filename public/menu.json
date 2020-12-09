@@ -1,0 +1,90 @@
+{
+    "food": [
+        {
+            "id": "FD001",
+            "name": "Chicken Katsu Curry Rice",
+            "description": "Rice with chicken katsu covered in curry sauce.",
+            "price": 50000,
+            "image_url": "img/curry-rice.jpg"
+        },
+        {
+            "id": "FD002",
+            "name": "Omurice",
+            "description": "Rice wrapped in omelette, covered in chily sauce and mayonnaise.",
+            "price": 48000,
+            "image_url": "img/omurice.jpg"
+        },
+        {
+            "id": "FD003",
+            "name": "Salmon Sushi",
+            "description": "Sushi with salmon.",
+            "price": 45000,
+            "image_url": "img/salmon-sushi.jpeg"
+        },
+        {
+            "id": "FD004",
+            "name": "Unagi Sushi",
+            "description": "Sushi with eel.",
+            "price": 48000,
+            "image_url": "img/unagi-sushi.jpg"
+        },
+        {
+            "id": "FD005",
+            "name": "Okonomiyaki",
+            "description": "Mix of fried egg, vegetables and flour.",
+            "price": 35000,
+            "image_url": "img/okonomiyaki.jpg"
+        },
+        {
+            "id": "FD006",
+            "name": "Takoyaki",
+            "description": "Fried flour ball filled with octopus.",
+            "price": 30000,
+            "image_url": "img/takoyaki.jpeg"
+        }
+    ],
+    "drinks": [
+        {
+            "id": "DR001",
+            "name": "Ice/Hot Ocha",
+            "description": "Original Japanese tea with or without ice.",
+            "price": 10000,
+            "image_url": "img/ocha.jpg"
+        },
+        {
+            "id": "DR002",
+            "name": "Matcha Milkshake",
+            "description": "Matcha mixed with milkshake.",
+            "price": 30000,
+            "image_url": "img/matcha-milkshake.jpeg"
+        },
+        {
+            "id": "DR003",
+            "name": "Chocolate Milkshake",
+            "description": "Chocolate flavoured mikshake.",
+            "price": 25000,
+            "image_url": "img/chocolate-milkshake.jpg"
+        },
+        {
+            "id": "DR004",
+            "name": "Orange Juice",
+            "description": "Real orange that juiced and mixed with sugar and ice.",
+            "price": 20000,
+            "image_url": "img/orange-juice.jpg"
+        },
+        {
+            "id": "DR005",
+            "name": "Strawberry Juice",
+            "description": "Real strawberry that juiced and mixed with sugar and ice.",
+            "price": 20000,
+            "image_url": "img/strawberry-juice.jpg"
+        },
+        {
+            "id": "DR006",
+            "name": "Melon Juice",
+            "description": "Real melon that juiced and mixed with sugar and ice.",
+            "price": 20000,
+            "image_url": "img/melon-juice.jpeg"
+        }
+    ]
+}
