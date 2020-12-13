@@ -232,43 +232,50 @@ function removeItem(id) {
 }
 
 function submitOrder() {
-    try {
-        var orderList = JSON.parse(localStorage.getItem('order_list'));
-        var orderText = "";
-        var totalQuantity = 0, grandTotal = 0;
-        const name = $('#input_name').val();
-        const tableNo = $('#input_table_no').val();
-    
-        orderList.forEach((item) => {
-            var totalPrice = 0;
-            totalPrice = item.quantity * item.price;
-            orderText += "• " + item.name + ": " + item.quantity + " x " + item.price + " = " + totalPrice +"\n";
-            totalQuantity += item.quantity;
-            grandTotal += totalPrice;
-        });
-        
-        clearOrder();
+    if (liff.isLoggedIn()) {
+        if(validateForm()) {
+            try {
+                var orderList = JSON.parse(localStorage.getItem('order_list'));
+                var orderText = "";
+                var totalQuantity = 0, grandTotal = 0;
+                const name = $('#input_name').val();
+                const tableNo = $('#input_table_no').val();
+            
+                orderList.forEach((item) => {
+                    var totalPrice = 0;
+                    totalPrice = item.quantity * item.price;
+                    orderText += "• " + item.name + ": " + item.quantity + " x " + item.price + " = " + totalPrice +"\n";
+                    totalQuantity += item.quantity;
+                    grandTotal += totalPrice;
+                });
+                
+                clearForm();
+                clearOrder();
 
-        if(liff.isInClient()) {
-            liff.sendMessages([{
-                'type': 'text',
-                'text': "Hi! I'm " + name + " on table " + tableNo + ".\n" +
-                        "My Order:\n" + orderText +
-                        "\nTotal item: " + totalQuantity + " item(s)\n" +
-                        "Total Price: " + grandTotal + "\n" +
-                        "\nPlease process my order! I will be waiting!"
-            }]).then(function() {
-                showSuccessAlert("Your Order has been submitted. Please wait.");
-                liff.closeWindow();
-            }).catch(function(error) {
-                showErrorAlert('Cannot send messages.');
-            });
-        }else {
-            showSuccessAlert("Your Order has been submitted. Please wait.");
-            goToPage('menu');
+                if(liff.isInClient()) {
+                    liff.sendMessages([{
+                        'type': 'text',
+                        'text': "Hi! I'm " + name + " on table " + tableNo + ".\n" +
+                                "My Order:\n" + orderText +
+                                "\nTotal item: " + totalQuantity + " item(s)\n" +
+                                "Total Price: " + grandTotal + "\n" +
+                                "\nPlease process my order! I will be waiting!"
+                    }]).then(function() {
+                        showSuccessAlert("Your Order has been submitted. Please wait.");
+                        liff.closeWindow();
+                    }).catch(function(error) {
+                        showErrorAlert('Cannot send messages.');
+                    });
+                }else {
+                    showSuccessAlert("Your Order has been submitted. Please wait.");
+                    goToPage('menu');
+                }
+            } catch (error) {
+                showErrorAlert();
+            }
         }
-    } catch (error) {
-        showErrorAlert();
+    }else {
+        showErrorAlert("Please Login first to Order!");
     }
 }
 
@@ -292,6 +299,65 @@ function getItemById(id) {
 }
 /* Handle Order - End */
 
+/* Input Validation - Start */
+function validateName() {
+    var name = $('#input_name').val();
+    var errorMessage = "";
+
+    if(name.length <= 3) {
+        errorMessage = "Name must be more than 3 characters"
+        $('#error_input_name').text(errorMessage);
+        return false;
+    }
+
+    $('#error_input_name').text("");
+    return true;
+}
+function validateTableNo() {
+    var tableNo = $('#input_table_no').val();
+    var errorMessage = "";
+
+    if(tableNo == "") {
+        if(liff.isInClient()) {
+            errorMessage = "Please scan QR on your table"
+        }else {
+            errorMessage = "Table number must be filled"
+        }
+        $('#error_input_table_no').text(errorMessage);
+        return false;
+    }
+
+    $('#error_input_table_no').text("");
+    return true;
+}
+function validateForm() {
+    if(validateName() && validateTableNo()) {
+        return true;
+    }
+
+    return false;
+}
+function handleNameOnKeypress() {
+    clearTimeout(timeout);
+
+    timeout = setTimeout(function () {
+        validateName();
+    }, 500);
+}
+function handleTableNoOnKeypress() {
+    clearTimeout(timeout);
+
+    timeout = setTimeout(function () {
+        validateTableNo();
+    }, 500);
+}
+/* Input Validation - End */
+
+// Clear Form
+function clearForm() {
+    $('#input_name').val("");
+    $('#input_table_no').val("");
+}
 
 // Handle Open Modal
 function openModal(modalName, id="") {

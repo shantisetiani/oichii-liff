@@ -80,6 +80,7 @@
             <div class="spacer-50 onscroll-only"></div>
             <div class="spacer-50 onscroll-only"></div>
             <div class="spacer-50 onscroll-only"></div>
+            <div class="spacer-50 onscroll-only"></div>
             
             <!-- Menu Section -->
             <section id="menu_section">
@@ -124,7 +125,10 @@
                         <div><strong>Name</strong></div>
                     </div>
                     <div class="col-xs-8">
-                        <input type="text" id="input_name" placeholder="Full Name" />
+                        <input type="text" id="input_name" placeholder="Full Name" oninput="handleNameOnKeypress();" />
+                    </div>
+                    <div class="col-xs-8 col-xs-offset-4">
+                        <span class="fs-12 error-text" id="error_input_name"></span>
                     </div>
                 </div>
                 <div class="spacer-20"></div>
@@ -134,7 +138,13 @@
                     </div>
                     <div class="col-xs-8">
                         <button id="btn_scan_no" class="btn btn-default btn-small">Scan QR</button>
-                        <div class="hidden" id="scan_qr_result"><input type="text" id="input_table_no" placeholder="Your table number" /><span id="scan_error_text"></span></div>
+                        <div class="hidden" id="scan_qr_result">
+                            <input type="text" id="input_table_no" placeholder="Your table number" oninput="handleTableNoOnKeypress();" />
+                            <span id="scan_error_text"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 col-xs-offset-4">
+                        <span class="fs-12 error-text" id="error_input_table_no"></span>
                     </div>
                 </div>
                 <div class="spacer-20"></div>
