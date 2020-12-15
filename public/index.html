@@ -139,7 +139,7 @@
                     <div class="col-xs-8">
                         <button id="btn_scan_no" class="btn btn-default btn-small">Scan QR</button>
                         <div class="hidden" id="scan_qr_result">
-                            <input type="text" id="input_table_no" placeholder="Your table number" oninput="handleTableNoOnKeypress();" />
+                            <input type="text" id="input_table_no" placeholder="Your table number" oninput="handleTableNoOnKeypress();" onchange="validateTableNo();" />
                             <span id="scan_error_text"></span>
                         </div>
                     </div>

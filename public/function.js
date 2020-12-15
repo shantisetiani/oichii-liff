@@ -220,6 +220,7 @@ function removeItem(id) {
             });
      
             localStorage.setItem('order_list', JSON.stringify(orderList));
+            adjustTotalQuantity();
         
             showSuccessAlert("<strong>" + foodName + "</strong> has been removed from Order List.");
         } catch (error) {
@@ -305,6 +306,7 @@ function validateName() {
     var errorMessage = "";
 
     if(name.length <= 3) {
+        scrollTo("#input_name");
         errorMessage = "Name must be more than 3 characters"
         $('#error_input_name').text(errorMessage);
         return false;
@@ -319,8 +321,10 @@ function validateTableNo() {
 
     if(tableNo == "") {
         if(liff.isInClient()) {
+            scrollTo("#btn_scan_no");
             errorMessage = "Please scan QR on your table"
         }else {
+            scrollTo("#input_table_no");
             errorMessage = "Table number must be filled"
         }
         $('#error_input_table_no').text(errorMessage);
@@ -342,14 +346,14 @@ function handleNameOnKeypress() {
 
     timeout = setTimeout(function () {
         validateName();
-    }, 500);
+    }, 200);
 }
 function handleTableNoOnKeypress() {
     clearTimeout(timeout);
 
     timeout = setTimeout(function () {
         validateTableNo();
-    }, 500);
+    }, 200);
 }
 /* Input Validation - End */
 
@@ -487,6 +491,12 @@ async function goToPage(page) {
         $('#btn_goto_order').show();
         // $('#btn_goto_menu').hide();
     }
+}
+
+function scrollTo(elementId) {
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $(elementId).offset().top - $("#header").height() - $(elementId).height()
+    }, 500);
 }
 
 function showSuccessAlert(htmlText) {
