@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/sushi.png"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="behavior.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/behavior.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
  
 <body onscroll="onScroll();">
@@ -125,7 +125,7 @@
                         <div><strong>Name</strong></div>
                     </div>
                     <div class="col-xs-8">
-                        <input type="text" id="input_name" placeholder="Full Name" oninput="handleNameOnKeypress();" />
+                        <input type="text" id="input_name" placeholder="Full Name" oninput="handleNameOnKeypress();" onchange="validateName();" />
                     </div>
                     <div class="col-xs-8 col-xs-offset-4">
                         <span class="fs-12 error-text" id="error_input_name"></span>
@@ -199,5 +199,5 @@
     </div>
 </body>
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script src="liff-starter.js"></script>
-<script src="function.js"></script>
+<script src="assets/js/liff-starter.js"></script>
+<script src="assets/js/function.js"></script>

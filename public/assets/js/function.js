@@ -13,7 +13,7 @@ async function loadMenu() {
                 '<div class="col-xs-12 col-lg-6 fnd-item">' +
                     '<div class="spacer-20"></div>' +
                     '<div class="col-xs-3 col-sm-4 no-padding">' +
-                        '<img src="'+item.image_url+'"/>' +
+                        '<img src="assets/'+item.image_url+'"/>' +
                     '</div>' +
                     '<div class="col-xs-9 col-sm-8">' +
                         '<h3 class="fs-36 fs-sm-24" id="food_name_'+id+'"><strong>'+item.name+'</strong></h3>' +
@@ -40,7 +40,7 @@ async function loadMenu() {
                 '<div class="col-xs-12 col-lg-6 fnd-item">' +
                     '<div class="spacer-20"></div>' +
                     '<div class="col-xs-3 col-sm-4 no-padding">' +
-                        '<img src="'+item.image_url+'"/>' +
+                        '<img src="assets/'+item.image_url+'"/>' +
                     '</div>' +
                     '<div class="col-xs-9 col-sm-8">' +
                         '<h3 class="fs-36 fs-sm-24" id="food_name_'+id+'"><strong>'+item.name+'</strong></h3>' +
